@@ -52,13 +52,12 @@ module logicApp './logic_app.bicep' = {
   name: 'logicApp'
   scope: resourceGroup(rg.name)
   params: {
+    baseName: safeBaseName
     location: location
   }
 }
 
 
-// Get the tenant ID
-//var tenantId = subscription().tenantId
 
 // Logic App
 //module logicApp './logic_app.bicep' = {
@@ -70,16 +69,5 @@ module logicApp './logic_app.bicep' = {
 //    connections_arm_externalid: connections_arm_externalid
 //    subscriptionId: subscriptionId
 //    tenantId: tenantId
-//  }
-//}
-
-//module logicApp './logic_app.bicep' = {
-//  name: 'logicApp'
-//  scope: resourceGroup(rg.name)
-//  params: {
-//    baseName: safeBaseName
-//    location: location
-//    connections_arm_externalid: connections_arm_externalid
-//    subscriptionId: subscriptionId
 //  }
 //}

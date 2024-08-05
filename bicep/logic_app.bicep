@@ -2,7 +2,7 @@ param baseName string
 param location string
 
 resource logicAppNew 'Microsoft.Logic/workflows@2019-05-01' = {
-  name: 'logicApp${baseName}'
+  name: 'la-pause-fab${baseName}'
   location: location
   properties: {
     definition: {
