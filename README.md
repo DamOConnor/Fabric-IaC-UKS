@@ -21,6 +21,11 @@ Some content sourced from:
 az login --tenant <your-tenant-id>
 ```
 
+- Optionally consider using a device code if that does not work:
+```
+az login --use-device-code
+```
+
 2. Set the subscription:
 
 ```
@@ -37,10 +42,11 @@ Set the parameters `<your-tenant-id>`, `<your-subscription-id>` based on the ten
 
 
 4. Authorise the arm connection
-- go to the Azure portal
-- select the resource group just deployed
-- select the `arm` API connection
-- Click **Edit API Connection**
+- Go to the Azure portal (https://portal.azure.com)
+- Select the resource group just deployed
+- Select the `arm` API connection
+- In the API Connection blade:
+- Click **General > Edit API Connection**
 - Click **Authorize**
 - Click **Save**
 
@@ -50,6 +56,9 @@ Set the parameters `<your-tenant-id>`, `<your-subscription-id>` based on the ten
 6. Optionally resume the capacity if you are going to work with it now.
 
 ## Hints and tips
+
+- if you deploy the template but never authorise the API Connection, the Fabric Capacity will never pause.  Either pause the capacity manually or authorise the connection.
+
 ### Convert an ARM template to bicep
 
 1. Export the ARM template from the Azure portal

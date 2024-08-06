@@ -17,12 +17,20 @@ param sku string = 'F2'
 @description('The admin email - used in the authorisation for the Logic App')
 param adminEmail string
 
-var baseName  = '${prefix}-${postfix}'
-var resourceGroupName = 'rg-${baseName}'
-var safeBaseName = '${prefix}${postfix}'
+@description('Unique guid - to help make resource names (like Fabric Capacity names) unique')
+param guid string = newGuid()
+var uniqueSuffix = toLower(substring(guid, 0, 5))
 
-var fabricCapacityName = 'fab${safeBaseName}'
-var logicAppName = 'la-pause-fab${safeBaseName}'
+// Helper variables for resource names
+//var baseName = '${prefix}-${postfix}${uniqueSuffix}'
+//var resourceGroupName = 'rg-${baseName}'
+//var safeBaseName = '${prefix}${postfix}'
+
+// How to create eg rg-fabric-suyi5, fabsuyi5, la-pause-fabsuyi5 ?
+var baseName = '${uniqueSuffix}'
+var resourceGroupName = 'rg-fabric-${uniqueSuffix}'
+var fabricCapacityName = 'fab${baseName}'
+var logicAppName = 'la-pause-fab${baseName}'
 
 // Resource group
 
@@ -51,8 +59,9 @@ module arm_mod './arm.bicep' = {
   name: 'arm'
   scope: resourceGroup(rg_res.name)
   params: {
-    tenantId: subscription().tenantId   
     adminEmail: adminEmail
+    subscriptionId: subscription().subscriptionId
+    tenantId: subscription().tenantId   
   }
 }
 

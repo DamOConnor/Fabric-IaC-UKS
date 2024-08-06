@@ -1,6 +1,7 @@
-param connections_arm_name string = 'arm'
-param tenantId string
 param adminEmail string
+param connections_arm_name string = 'arm'
+param subscriptionId string
+param tenantId string
 
 resource arm_res 'Microsoft.Web/connections@2016-06-01' = {
   name: connections_arm_name
@@ -26,7 +27,7 @@ resource arm_res 'Microsoft.Web/connections@2016-06-01' = {
       description: 'Azure Resource Manager exposes the APIs to manage all of your Azure resources.'
       iconUri: 'https://connectoricons-prod.azureedge.net/releases/v1.0.1685/1.0.1685.3700/${connections_arm_name}/icon.png'
       brandColor: '#003056'
-      id: '/subscriptions/cf3f51fa-8bf4-45d2-9fe4-edee281ccdb4/providers/Microsoft.Web/locations/uksouth/managedApis/${connections_arm_name}'
+      id: '/subscriptions/${subscriptionId}/providers/Microsoft.Web/locations/uksouth/managedApis/${connections_arm_name}'
       type: 'Microsoft.Web/locations/managedApis'
     }
     testLinks: []
