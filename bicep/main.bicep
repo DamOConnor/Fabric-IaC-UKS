@@ -12,6 +12,8 @@ var baseName  = '${prefix}-${postfix}'
 var resourceGroupName = 'rg-${baseName}'
 var safeBaseName = '${prefix}${postfix}'
 
+var fabricCapacityName = 'fab${safeBaseName}'
+var logicAppName = 'la-pause-fab${safeBaseName}'
 
 // Resource group
 
@@ -26,10 +28,10 @@ module fab './fabric_capacity.bicep' = {
   name: 'fab'
   scope: resourceGroup(rg.name)
   params: {
-    baseName: safeBaseName
+    adminEmail: adminEmail
+    fabricCapacityName: fabricCapacityName
     location: location
     sku: sku
-    adminEmail: adminEmail
   }
 }
 
@@ -52,9 +54,16 @@ module logicApp './logic_app.bicep' = {
   name: 'logicApp'
   scope: resourceGroup(rg.name)
   params: {
-    baseName: safeBaseName
+    fabricCapacityName: fabricCapacityName
     location: location
+    logicAppName: logicAppName
+    resourceGroupName: resourceGroupName
+    subscriptionId: subscription().subscriptionId
   }
+  dependsOn: [
+    fab
+    arm
+  ]
 }
 
 

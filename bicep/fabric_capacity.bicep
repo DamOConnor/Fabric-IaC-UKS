@@ -1,4 +1,5 @@
-param baseName string
+param adminEmail string
+param fabricCapacityName string
 param location string
 
 @allowed([
@@ -15,10 +16,9 @@ param location string
   'F2048'
 ])
 param sku string
-param adminEmail string
 
-resource name_resource 'Microsoft.Fabric/capacities@2023-11-01' = {
-  name: 'fab${baseName}'
+resource fabricCapacity 'Microsoft.Fabric/capacities@2023-11-01' = {
+  name: fabricCapacityName
   location: location
   sku: {
     name: sku

@@ -1,12 +1,17 @@
-param fabricCapacityName string
-param location string
-param logicAppName string
-param resourceGroupName string
-param subscriptionId string
-param connections_arm_externalid string = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Web/connections/arm'
+@description('Base name for resources')
+param baseName string
 
-resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
-  name: logicAppName
+@description('The location for the Logic App')
+param location string
+
+@description('ARM connection external ID')
+param connections_arm_externalid string
+
+@description('Subscription ID for the target resources')
+param subscriptionId string
+
+resource logicApp 'Microsoft.Logic/workflows@2021-06-01' = {
+  name: 'lapausefabric'
   location: location
   properties: {
     state: 'Enabled'
@@ -55,7 +60,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
               }
             }
             method: 'post'
-            path: '/subscriptions/@{encodeURIComponent(\'${subscriptionId}\')}/resourcegroups/@{encodeURIComponent(\'${resourceGroupName}\')}/providers/@{encodeURIComponent(\'Microsoft.Fabric\')}/@{encodeURIComponent(\'capacities/${fabricCapacityName}\')}/@{encodeURIComponent(\'suspend\')}'
+            path: '/subscriptions/@{encodeURIComponent(subscriptionId)}/resourcegroups/@{encodeURIComponent(\'rg-${baseName}\')}/providers/@{encodeURIComponent(\'Microsoft.Fabric\')}/@{encodeURIComponent(\'capacities/fab${baseName}\')}/@{encodeURIComponent(\'suspend\')}'
             queries: {
               'x-ms-api-version': '2023-11-01'
             }
