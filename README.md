@@ -5,6 +5,12 @@ This repo is under construction
 
 ![level](https://img.shields.io/badge/Microsoft%20Fabric-IaC-green)
 
+[!NOTE]
+> The Bicep template (`main.bicep`) contains code to make sure Azure resource names are unique.  If you run the template multiple times you will get multiple resource groups and Fabric Capacities.  Consider deleting resource groups created in error.
+
+-
+-
+
 ## Work in progress
 
 This repo will create an F2 Fabric Capacity and Logic App to pause it in UK South.  Fabric SKU and region can be altered if required.
