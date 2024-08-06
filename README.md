@@ -21,7 +21,10 @@ Some content sourced from:
 
 ## Steps
 
-1. [Login to Azure CLI:](Login%20to%20Azure%20CLI.md)
+1. [Login to Azure CLI:](Login%20to%20Azure%20CLI.md) in Visual Studio Code:
+- Open VSCode
+- Open a Terminal
+- Enter the following text:
 
 ```
 az login --tenant <your-tenant-id>
@@ -32,11 +35,13 @@ az login --tenant <your-tenant-id>
 az login --use-device-code
 ```
 
+
 2. Set the subscription:
 
 ```
 az account set --subscription <your-subscription-id>
 ```
+
 
 3. Deploy the Bicep file:
 
