@@ -1,3 +1,5 @@
+// This is the most basic Logic App - it doesn't even check to see if the Fabric Capacity is already suspended.
+// !!TODO add a check to see if the Fabric Capacity is already suspended before attempting to suspend it.
 param fabricCapacityName string
 param location string
 param logicAppName string
@@ -5,7 +7,7 @@ param resourceGroupName string
 param subscriptionId string
 param connections_arm_externalid string = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Web/connections/arm'
 
-resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
+resource logicApp_res 'Microsoft.Logic/workflows@2019-05-01' = {
   name: logicAppName
   location: location
   properties: {
@@ -77,3 +79,5 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
     }
   }
 }
+
+output logicAppName string = logicAppName

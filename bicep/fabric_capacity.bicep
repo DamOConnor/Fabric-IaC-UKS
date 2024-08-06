@@ -17,7 +17,7 @@ param location string
 ])
 param sku string
 
-resource fabricCapacity 'Microsoft.Fabric/capacities@2023-11-01' = {
+resource fabricCapacity_res 'Microsoft.Fabric/capacities@2023-11-01' = {
   name: fabricCapacityName
   location: location
   sku: {
@@ -32,3 +32,5 @@ resource fabricCapacity 'Microsoft.Fabric/capacities@2023-11-01' = {
     }
   }
 }
+
+output fabricCapacityName string = fabricCapacityName

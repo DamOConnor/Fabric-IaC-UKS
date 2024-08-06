@@ -2,7 +2,7 @@ param connections_arm_name string = 'arm'
 param tenantId string
 param adminEmail string
 
-resource connections_arm_name_resource 'Microsoft.Web/connections@2016-06-01' = {
+resource arm_res 'Microsoft.Web/connections@2016-06-01' = {
   name: connections_arm_name
   location: 'uksouth'
   kind: 'V1'
@@ -32,3 +32,6 @@ resource connections_arm_name_resource 'Microsoft.Web/connections@2016-06-01' = 
     testLinks: []
   }
 }
+
+
+output connections_arm_name string = arm_res.name
