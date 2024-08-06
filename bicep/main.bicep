@@ -5,11 +5,11 @@ targetScope = 'subscription'
 @description('The location for all resources deployed in this template')
 param location string = 'uksouth'
 
-@description('The core name that will be used for resources')
-param prefix string = 'general'
+//@description('The core name that will be used for resources')
+//param prefix string = 'general'
 
-@description('The text that will be suffixed to the end of resource names')
-param postfix string = 'uks'
+//@description('The text that will be suffixed to the end of resource names')
+//param postfix string = 'uks'
 
 @description('The Fabric F-SKU size, eg F2, F64 etc')
 param sku string = 'F2'
@@ -31,6 +31,7 @@ var baseName = '${uniqueSuffix}'
 var resourceGroupName = 'rg-fabric-${uniqueSuffix}'
 var fabricCapacityName = 'fab${baseName}'
 var logicAppName = 'la-pause-fab${baseName}'
+
 
 // Resource group
 
